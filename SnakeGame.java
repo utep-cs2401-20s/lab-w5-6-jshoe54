@@ -19,7 +19,7 @@ public class SnakeGame {
 	
 	private static int recursiveChecks;
 	
-	public int[] findTailExhaustive(int x, int y) {
+	public int[] findTailExhaustive() {
 		int neighbors=0;
 		int [] results = {0,0,0};
 		for(int i=0; i<gameboard.length;i++) {
@@ -42,7 +42,7 @@ public class SnakeGame {
 					if((i+1)<gameboard.length&&gameboard[i+1][j]){
 					neighbors++;
 					}
-					if((i+1)<gameboard.length&&gameboard[i][j+1]){
+					if((j+1)<gameboard.length&&gameboard[i][j+1]){
 					neighbors++;
 					}
 					if((i-1)>=0&&(j+1)<gameboard.length&&gameboard[i-1][j+1]){
@@ -61,7 +61,31 @@ public class SnakeGame {
 		return results;
 	}
 	public int[] findTailRecursive() {
-		
+		int neighbors=0;
+		int [] results = {0,0,0};
+		//starts at head? at indecies [i][j]
+		int position[i][j];
+			if(gameboard[i][j]) {
+				results[2]++;
+				if((i-1)>=0&&gameboard[i-1][j]){
+					neighbors++;
+				}
+				if((j-1)>=0&&gameboard[i][j-1]){
+					neighbors++;
+				}
+				if((i+1)<gameboard.length&&gameboard[i+1][j]){
+						neighbors++;
+				}
+				if((j+1)<gameboard.length&&gameboard[i][j+1]){
+						neighbors++;
+				}
+			}
+			if((neighbors==1)&&(!(position[0]==i)&&(position[1]==j))){
+				results[0]=i;
+				results[1]=j;
+				}
+		return results;
+			findTailRecursive();
 	}
 	
 	private int[] findTailRecursive(int[] currentPosition, int[] previousPosition) {
